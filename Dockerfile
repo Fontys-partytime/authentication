@@ -14,14 +14,14 @@ ENV VSS_NUGET_EXTERNAL_FEED_ENDPOINTS '{"endpointCredentials":[{"endpoint":"http
 # Get and install the Artifact Credential provider
 RUN wget -O - https://raw.githubusercontent.com/Microsoft/artifacts-credprovider/master/helpers/installcredprovider.sh  | bash
 
-COPY ["AuthenticationWebApi.csproj", "."]
+COPY ["src/AuthenticationWebApi/AuthenticationWebApi.csproj", "src/AuthenticationWebApi/"]
 
 # Critical line to make PartyTime.Common work
 COPY ["nuget.config", ""]
 
-RUN dotnet restore "./AuthenticationWebApi.csproj"
+RUN dotnet restore "src/AuthenticationWebApi/AuthenticationWebApi.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/src/AuthenticationWebApi"
 
 RUN dotnet restore "AuthenticationWebApi.csproj" -s "https://pkgs.dev.azure.com/I457616/partytime/_packaging/Partytime.Common/nuget/v3/index.json" -s "https://pkgs.dev.azure.com/I457616/partytime/_packaging/Partytime.Joined.Contracts/nuget/v3/index.json" -s "https://api.nuget.org/v3/index.json"
 RUN dotnet build "AuthenticationWebApi.csproj" -c Release -o /app/build

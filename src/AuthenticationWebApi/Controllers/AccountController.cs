@@ -1,11 +1,12 @@
-﻿using JwtAuthenticationManager;
-using JwtAuthenticationManager.Models;
+﻿
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Partytime.Common.JwtAuthentication;
+using Partytime.Common.JwtAuthentication.Models;
 
 namespace AuthenticationWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("account")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -13,7 +14,7 @@ namespace AuthenticationWebApi.Controllers
 
         public AccountController(JwtTokenHandler jwtTokenHandler) 
         {
-            this._jwtTokenHandler = jwtTokenHandler;
+            _jwtTokenHandler = jwtTokenHandler;
         }
 
         [HttpPost]
