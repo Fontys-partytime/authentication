@@ -1,11 +1,12 @@
 {
-  "profiles": {
-    "Docker Compose": {
-      "commandName": "DockerCompose",
-      "commandVersion": "1.0",
-      "serviceActions": {
-        "authenticationwebapi": "StartWithoutDebugging"
-      }
+  "DatabaseSettings": {
+    "ConnectionString": "Server=authentication.postgres.database.azure.com;Database=users;Port=5432;User Id=tomoli;Password=34Bn473OaN76qBT7;Ssl Mode=Require;"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
     }
-  }
+  },
+  "AllowedHosts": "*"
 }

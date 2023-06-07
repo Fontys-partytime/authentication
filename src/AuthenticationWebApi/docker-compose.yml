@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  authenticationwebapi:
-    image: ${DOCKER_REGISTRY-}authenticationwebapi
-    build:
-      context: .
-      dockerfile: Dockerfile
