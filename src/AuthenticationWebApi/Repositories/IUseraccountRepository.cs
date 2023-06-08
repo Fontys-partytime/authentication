@@ -9,6 +9,6 @@ namespace Partytime.Party.Service.Repositories
     public interface IUseraccountRepository
     {
         Task<Entities.Useraccount> CreateUser(Entities.Useraccount user);
-        Task<List<Entities.Useraccount>> GetUser(string username, string password);
+        Task<Entities.Useraccount?> GetUser(string username, string password);
     }
 }
