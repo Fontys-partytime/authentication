@@ -22,7 +22,7 @@ namespace AuthenticationWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<AuthenticationResponse?>> Authentication([FromBody] AuthenticationRequest authenticationRequest)
+        public async Task<ActionResult<AuthenticationResponse>> Authentication([FromBody] AuthenticationRequest authenticationRequest)
         {
             var authenticationResponse = await _jwtTokenHandler.GenerateJwtToken(authenticationRequest);
             if (authenticationResponse == null) return Unauthorized();
