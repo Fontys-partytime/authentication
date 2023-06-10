@@ -47,13 +47,12 @@ namespace AuthenticationWebApi.Controllers
         [HttpPost("user")]
         public async Task<IActionResult> GetUser([FromBody] GetUseraccountDto getUseraccountDto)
         {
-            return Ok(getUseraccountDto.Username.ToString());
-            //var user = await _useraccountRepository.GetUser(getUseraccountDto.Username, getUseraccountDto.Password);
+            var user = await _useraccountRepository.GetUser(getUseraccountDto.Username, getUseraccountDto.Password);
 
-            //if (user == null)
-            //   return NotFound();
+            if (user == null)
+                return NotFound();
 
-            //return Ok(user);
+            return Ok(user);
         }
     }
 }
