@@ -2,6 +2,7 @@
 using AuthenticationWebApi.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Partytime.Common.JwtAuthentication;
 using Partytime.Common.JwtAuthentication.Models;
 using Partytime.Party.Service.Repositories;
@@ -47,6 +48,8 @@ namespace AuthenticationWebApi.Controllers
         [HttpPost("user")]
         public async Task<IActionResult> GetUser(GetUseraccountDto getUseraccountDto)
         {
+            return Ok(getUseraccountDto);
+            var jsonData = JsonConvert.DeserializeObject<GetUseraccountDto>(getUseraccountDto);
             var user = await _useraccountRepository.GetUser(getUseraccountDto.Username, getUseraccountDto.Password);
 
             if (user == null)
