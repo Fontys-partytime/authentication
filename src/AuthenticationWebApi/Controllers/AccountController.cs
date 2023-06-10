@@ -45,7 +45,7 @@ namespace AuthenticationWebApi.Controllers
         }
 
         [HttpPost("user")]
-        public async Task<IActionResult> GetUser([FromBody] GetUseraccountDto getUseraccountDto)
+        public async Task<IActionResult> GetUser(GetUseraccountDto getUseraccountDto)
         {
             var user = await _useraccountRepository.GetUser(getUseraccountDto.Username, getUseraccountDto.Password);
 
