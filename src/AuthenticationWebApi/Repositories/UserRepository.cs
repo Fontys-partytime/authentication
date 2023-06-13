@@ -15,6 +15,7 @@ namespace Partytime.Party.Service.Repositories
 
         public async Task<Useraccount> CreateUser(Useraccount user)
         {
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
 
@@ -24,9 +25,16 @@ namespace Partytime.Party.Service.Repositories
         [HttpPost]
         public async Task<Useraccount?> GetUser(string username, string password)
         {
-            var user = await _context.Users.Where(x => x.Username == username && x.Password == password).FirstOrDefaultAsync();
+            var user = await _context.Users.Where(x => x.Username == username).FirstOrDefaultAsync();
 
-            return user;
+            bool isValidPassword = BCrypt.Net.BCrypt.Verify(password, user.Password);
+
+            if (isValidPassword)
+            {
+                return user;
+            }
+
+            return null;
         }
     }
 }

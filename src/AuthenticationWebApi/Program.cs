@@ -1,5 +1,6 @@
 using AuthenticationWebApi.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Partytime.Common.JwtAuthentication;
 using Partytime.Party.Service.Repositories;
 using System.Text.Json.Serialization;
@@ -21,6 +22,7 @@ builder.Services.AddDbContext<UseraccountContext>(opt =>
 builder.Services.AddScoped<IUseraccountRepository, UserRepository>();
 
 builder.Services.AddSingleton<JwtTokenHandler>();
+builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 
