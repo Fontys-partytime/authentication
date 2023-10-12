@@ -37,7 +37,7 @@ namespace AuthenticationWebApi.Controllers
                 Username = createUseraccountDto.Username,
                 Email = createUseraccountDto.Email,
                 Password = createUseraccountDto.Password,
-                Role = createUseraccountDto.Role
+                Role = "User"
             };
 
             Entities.Useraccount createdUseraccount = await _useraccountRepository.CreateUser(user);
